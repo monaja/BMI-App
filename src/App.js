@@ -5,20 +5,24 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1> Know your BMI </h1>
+     <p> Get to know you health</p>
+	   	 <div>
+		<form>
+		<label> Enter your weight in Kgs: </label>
+		<input type="text"/><br/><br/>
+		<label> Enter your height in metres: </label>
+		<input type="text"/><br/><br/>
+		<button>Calculate </button>
+		</form>
+		</div>
+		<div>
+	Your BMI is: <span>2.4</span>
+	</div>
+	
+	<div>
+	Your are: <span>Obessed</span>
+	</div>
     </div>
   );
 }

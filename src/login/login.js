@@ -1,4 +1,5 @@
 import React from 'react';
+import { isNumber } from 'util';
 
 var bmiValue;
 
@@ -18,14 +19,17 @@ class Login extends React.Component {
       handleChange(event) {
         const target = event.target;
          const name = target.name;
-        this.setState({
-            [name]: target.value
-        });
+         if(!isNaN(target.value)){
+                this.setState({
+                    [name]: target.value
+                });
+
+         }
       }
     
       handleSubmit(event) {
         this.state.bmiRatio = Number(this.state.weightA) / (Number(this.state.heightA) * Number(this.state.heightA));
-        this.bmiValue = this.state.bmiRatio;
+        this.bmiValue = this.state.bmiRatio.toPrecision(2);
         
         this.setState(
             {
@@ -47,9 +51,9 @@ class Login extends React.Component {
                     <div>
                         <form  onSubmit={this.handleSubmit}>
                             <label> Enter your weight in Kgs: </label>
-                            <input type="number" name = "weightA" value={this.state.weightA} onChange={this.handleChange} required min="1" /><br /><br />
+                            <input type="text" name = "weightA" value={this.state.weightA} onChange={this.handleChange} required min="1" /><br /><br />
                             <label> Enter your height in metres: </label>
-                            <input type="number" name="heightA" value={this.state.heightA} onChange={this.handleChange} required min="1"/><br /><br />
+                            <input type="text" name="heightA" value={this.state.heightA} onChange={this.handleChange} required min="1"/><br /><br />
                             <input type="submit" value="Get results" />
                         </form>
                     </div>

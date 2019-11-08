@@ -25,8 +25,8 @@ class Login extends React.Component {
     
       handleSubmit(event) {
         this.state.bmiRatio = Number(this.state.weightA) / (Number(this.state.heightA) * Number(this.state.heightA));
-        alert('A name was submitted: ' + this.state.weightA + ' + ' + this.state.heightA + '= '+ this.state.bmiRatio);
         this.bmiValue = this.state.bmiRatio;
+        
         this.setState(
             {
                 bmiRatio: null
@@ -54,7 +54,7 @@ class Login extends React.Component {
                         </form>
                     </div>
                     <div>
-                        Your BMI is: <span>{this.state.bmiValue}</span>
+                        Your BMI is: <span>{this.bmiValue}</span>
                     </div>
 
                     <div>

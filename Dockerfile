@@ -14,4 +14,6 @@ ADD public /usr/src/app/public
 
 RUN npm build
 
+EXPOSE 3000
+
 CMD [ "npm", "start"]

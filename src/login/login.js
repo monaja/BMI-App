@@ -1,7 +1,9 @@
 import React from 'react';
 import { isNumber } from 'util';
+import { throwStatement } from '@babel/types';
 
 var bmiValue;
+ let health;
 
 class Login extends React.Component {
     constructor(props) {
@@ -9,8 +11,8 @@ class Login extends React.Component {
         this.state = {
             weightA: null,
             heightA: null,
-            bmiRatio: null
-        };
+            bmiRatio: null,
+         };
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,11 +32,23 @@ class Login extends React.Component {
       handleSubmit(event) {
         this.state.bmiRatio = Number(this.state.weightA) / (Number(this.state.heightA) * Number(this.state.heightA));
         this.bmiValue = this.state.bmiRatio.toPrecision(2);
+        if(this.bmiValue < 18.5){
+            this.health = "underweight";
+        } else if(this.bmiValue >= 18.5 && this.bmiValue <= 24.9){
+            this.health = "healthy";
+        } else if(this.bmiValue >= 25 && this.bmiValue <= 29.9){
+            this.health = "overweight";
+        } else if(this.bmiValue >= 30 && this.bmiValue <= 39.9){
+            this.health = "Obessed";
+        } else {
+            this.health = "extreme";
+        }
+
         
         this.setState(
             {
-                bmiRatio: null
-            }
+                bmiRatio: null,
+             }
         )
         event.preventDefault();
       }
@@ -43,7 +57,7 @@ class Login extends React.Component {
     render() {
 
         return (
-            <div className="Page-Center"><a href="#" className="badge badge-primary">Click me!</a>
+            <div className="Page-Center">
                 Hello {this.props.name} from the Login
                 <div>
                     <h1> Know your BMI </h1>
@@ -62,7 +76,7 @@ class Login extends React.Component {
                     </div>
 
                     <div>
-                        Your are: <span>Obessed</span>
+                        Your are: <span>{this.health}</span>
                     </div>
                 </div>
             </div>
